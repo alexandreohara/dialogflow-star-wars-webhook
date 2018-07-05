@@ -11,5 +11,9 @@
     "url": "https://github.com/alexandreohara/dialogflow-star-wars-webhook"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.13.4"
+  }
 }

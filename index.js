@@ -1,3 +1,5 @@
+"use strict";
+
 const express = require("express");
 const bodyParser = require("body-parser");
 var request = require('request');
