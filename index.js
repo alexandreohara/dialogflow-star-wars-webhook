@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 var request = require('request');
+
 request('https://swapi.co/api/people/1', function (error, response, body) {
     var parsedData = JSON.parse(body);
     console.log(parsedData);
@@ -15,23 +16,20 @@ server.use(
 
 server.use(bodyParser.json());
 
-server.post("/echo", function(req, res) {
-  var speech =
+server.post("/people", function(req, res) {
+  var person =
     req.body.result &&
     req.body.result.parameters &&
-    req.body.result.parameters.echoText
-      ? req.body.result.parameters.echoText
-      : "Seems like some problem. Try again.";
+    req.body.result.parameters.people
+      ? req.body.result.parameters.people
+      : "Unknown";
   return res.json({
-    speech: speech,
-    displayText: speech,
-    source: "webhook-echo-sample"
+    speech: person + "'s height is xxx",
+    displayText: person + "'s height is xxx",
+    source: "person height"
   });
 });
 
-// var request = require('request'); //assuming you installed this module
-// app.get('/api/twitter/connect', function(req, res){
-//   request(TWITTER_API_URL + API_KEYS, function(err, body){
-//       res.json(body); //res is the response object, and it passes info back to client side
-//   });
-// });
+server.listen(process.env.PORT || 8000, function() {
+    console.log("Server up and listening");
+  });
