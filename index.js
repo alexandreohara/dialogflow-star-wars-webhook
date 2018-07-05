@@ -14,16 +14,15 @@ server.use(
 server.use(bodyParser.json());
 
 
-
 request('https://swapi.co/api/people/', function (error, response, body) {
     var parsedData = JSON.parse(body);
-    for (var index in parsedData['results']) {
-        console.log(parsedData['results'][index]['name']);
-    }
+    // for (var index in parsedData['results']) {
+    //     console.log(JSON.stringify(parsedData['results'][index]['name']));
+    // }
     server.post("/people", function(req, res) {  
         var person = req.body.queryResult && req.body.queryResult.parameters && req.body.queryResult.parameters.people ? req.body.queryResult.parameters.people : "Unknown";
         for (var index in parsedData['results']) {
-            var characterName = parsedData['results'][index]['name'];
+            var characterName = JSON.stringify(parsedData['results'][index]['name']);
             if (person == characterName) {
                 return res.json({
                     fulfillmentText: person + "'s height is " + parsedData['height'] + "cm",
