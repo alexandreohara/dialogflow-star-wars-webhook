@@ -25,7 +25,7 @@ request('https://swapi.co/api/people/1', function (error, response, body) {
             ? req.body.queryResult.parameters.people
             : "Unknown";
         return res.json({
-          fulfillmentText: person + "'s height is " + parsedData,
+          fulfillmentText: person + "'s height is " + parsedData['height'] + "cm",
           source: "person height"
         });
       });
