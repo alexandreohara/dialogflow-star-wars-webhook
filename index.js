@@ -20,7 +20,7 @@ request('https://swapi.co/api/people/', function (error, response, body) {
         console.log(JSON.stringify(parsedData['results'][index]['name']));
     }
     server.post("/people", function(req, res) {  
-        var person = req.body.queryResult && req.body.queryResult.parameters && req.body.queryResult.parameters.people ? req.body.queryResult.parameters.people : "Unknown";
+        var person = req.body.queryResult && req.body.queryResult.parameters && req.body.queryResult.parameters.people ? JSON.stringify(req.body.queryResult.parameters.people) : "Unknown";
         for (var index in parsedData['results']) {
             var characterName = JSON.stringify(parsedData['results'][index]['name']);
             if (person == characterName) {
@@ -31,7 +31,7 @@ request('https://swapi.co/api/people/', function (error, response, body) {
             }
             else {
                 return res.json({
-                    fulfillmentText: person + characterName,
+                    fulfillmentText: "Something went wrong",
                     source: "person height"
                 });
             }
