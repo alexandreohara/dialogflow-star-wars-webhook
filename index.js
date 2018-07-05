@@ -29,13 +29,11 @@ request('https://swapi.co/api/people/', function (error, response, body) {
                     source: "person height"
                 });
             }
-            else {
-                return res.json({
-                    fulfillmentText: person + characterName,
-                    source: "person height"
-                });
-            }
         }
+        return res.json({
+            fulfillmentText: person + characterName,
+            source: "person height"
+        });
 
 
       });
