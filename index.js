@@ -25,7 +25,7 @@ request('https://swapi.co/api/people/', function (error, response, body) {
             var characterName = JSON.stringify(parsedData['results'][index]['name']);
             if (person == characterName) {
                 return res.json({
-                    fulfillmentText: person + "'s height is " + parsedData['results'][index]['height'] + "cm",
+                    fulfillmentText: req.body.queryResult.parameters.people + "'s height is " + parsedData['results'][index]['height'] + "cm",
                     source: "person height"
                 });
             }
